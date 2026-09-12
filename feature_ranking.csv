@@ -1,0 +1,31 @@
+feature,selected,rank
+mean area,True,1
+mean concave points,True,1
+mean concavity,True,1
+area error,True,1
+worst radius,True,1
+worst texture,True,1
+worst perimeter,True,1
+worst area,True,1
+worst concave points,True,1
+worst concavity,True,1
+mean perimeter,False,2
+mean radius,False,3
+worst smoothness,False,4
+mean texture,False,5
+worst compactness,False,6
+radius error,False,7
+worst symmetry,False,8
+mean compactness,False,9
+mean smoothness,False,10
+worst fractal dimension,False,11
+perimeter error,False,12
+concavity error,False,13
+fractal dimension error,False,14
+compactness error,False,15
+texture error,False,16
+concave points error,False,17
+symmetry error,False,18
+mean fractal dimension,False,19
+smoothness error,False,20
+mean symmetry,False,21
