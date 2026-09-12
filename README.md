@@ -1,143 +1,50 @@
 # AI/ML for Cancer Classification & Biological Sequence Analysis
 
-An end-to-end computational biology project combining **machine learning for cancer classification** with **deep learning for biological DNA sequence analysis**.
-
-The project demonstrates a reproducible workflow covering data preprocessing, exploratory analysis, feature selection, dimensionality reduction, machine-learning model development, hyperparameter optimization, model evaluation, feature interpretation, and biological sequence modeling.
-
-> **Important:** This is an educational and research-oriented computational project. The cancer classification models are **not clinical diagnostic tools** and have not been clinically validated.
-
----
-
 ## Project Overview
 
-This project contains two complementary AI/ML components:
+This project demonstrates an end-to-end **AI/ML and bioinformatics workflow** combining cancer-related data analysis with biological sequence classification.
 
-### 1. Cancer Classification
+The project contains two complementary components:
 
-Machine-learning models are trained to classify breast-cancer observations using the **Wisconsin Diagnostic Breast Cancer (WDBC)** dataset.
+1. **Cancer Classification** using machine learning on the Wisconsin Diagnostic Breast Cancer (WDBC) dataset.
+2. **Biological Sequence Analysis** using an LSTM/RNN model to classify DNA sequences containing a promoter-like motif.
 
-The dataset contains numerical morphological measurements derived from digitized images of breast-cell nuclei, rather than gene-expression measurements.
+The project is designed as an **R&D and portfolio project** to demonstrate the application of machine learning, statistical analysis, biological data processing, and sequence modeling.
 
-The workflow includes:
-
-* Data preprocessing and quality checks
-* Feature scaling
-* Exploratory data analysis
-* Feature selection/ranking
-* PCA analysis
-* Multiple machine-learning algorithms
-* Hyperparameter optimization
-* Cross-validation
-* Test-set evaluation
-* ROC-AUC analysis
-* Confusion-matrix analysis
-* Feature-importance interpretation
-
-### 2. Biological DNA Sequence Analysis
-
-A separate deep-learning workflow uses an **LSTM/RNN architecture** to analyze biological DNA sequences and identify sequence patterns.
-
-This demonstrates how deep learning can be applied directly to biological sequence data rather than relying only on manually engineered numerical features.
+> **Important:** This project is intended for research and educational purposes only. The cancer classification model is **not a clinically validated diagnostic tool**.
 
 ---
 
 ## Project Objectives
 
-The main objectives were to:
-
-1. Build a complete machine-learning workflow for biological data.
-2. Compare multiple classical ML algorithms.
-3. Apply appropriate preprocessing and feature scaling.
-4. Perform feature selection and dimensionality reduction.
-5. Optimize model hyperparameters using cross-validation.
-6. Evaluate models using metrics beyond accuracy.
-7. Investigate biologically meaningful feature patterns.
-8. Apply deep learning to DNA sequence data.
-9. Combine Python-based ML with R-based visualization.
-10. Demonstrate an end-to-end computational R&D workflow.
+* Apply machine learning to biological/cancer-related data.
+* Perform data preprocessing and quality checks.
+* Compare multiple classification algorithms.
+* Apply feature analysis and dimensionality reduction.
+* Perform hyperparameter optimization.
+* Evaluate models using multiple performance metrics.
+* Analyze biologically relevant features.
+* Build an LSTM-based model for DNA sequence classification.
+* Integrate Python and R-based analysis.
+* Demonstrate a reproducible computational biology workflow.
 
 ---
 
-## Project Workflow
+# Project Components
 
-```text
-Public Biological Dataset
-        │
-        ▼
-Data Preprocessing
-        │
-        ▼
-Exploratory Data Analysis
-        │
-        ├──────────────► Feature Ranking
-        │
-        ▼
-Feature Scaling
-        │
-        ▼
-PCA / Dimensionality Analysis
-        │
-        ▼
-Train / Test Split
-        │
-        ▼
-Model Development
-        │
-        ├── Logistic Regression
-        ├── Support Vector Machine
-        ├── Random Forest
-        └── Artificial Neural Network
-        │
-        ▼
-Hyperparameter Optimization
-        │
-        ▼
-Model Evaluation
-        │
-        ├── Accuracy
-        ├── Precision
-        ├── Recall
-        ├── F1-score
-        ├── ROC-AUC
-        └── Confusion Matrix
-        │
-        ▼
-Biological Interpretation
-```
+## 1. Cancer Classification
 
-A separate sequence-learning branch performs:
+The first component uses the **Wisconsin Diagnostic Breast Cancer (WDBC)** dataset.
 
-```text
-DNA Sequences
-      │
-      ▼
-Sequence Encoding
-      │
-      ▼
-Embedding / Representation
-      │
-      ▼
-LSTM / RNN
-      │
-      ▼
-Sequence Classification
-```
-
----
-
-## Dataset
-
-### Wisconsin Diagnostic Breast Cancer Dataset
-
-The cancer-classification component uses the publicly available WDBC dataset.
-
-The processed dataset contains:
+The dataset contains:
 
 * **569 observations**
 * **30 numerical features**
-* **1 diagnosis/classification variable**
+* **Diagnosis:** Benign or Malignant
 
-The features represent morphological characteristics of cell nuclei, including measurements related to:
+The features represent **morphological measurements of cell nuclei** derived from digitized breast-cell images.
+
+Examples include:
 
 * Radius
 * Texture
@@ -150,51 +57,55 @@ The features represent morphological characteristics of cell nuclei, including m
 * Symmetry
 * Fractal dimension
 
-Both mean, standard-error, and worst-value measurements are represented.
+### Machine Learning Models
+
+Four classification algorithms were evaluated:
+
+* Logistic Regression
+* Support Vector Machine (SVM)
+* Random Forest
+* Artificial Neural Network (ANN)
 
 ---
 
-## Data Preprocessing
+# 2. Data Preprocessing
 
-The preprocessing workflow included:
+The preprocessing workflow includes:
 
-* Dataset inspection
-* Data cleaning
-* Target encoding
-* Feature/target separation
-* Train/test splitting
-* Feature scaling
-* Preparation of model-ready datasets
+1. Loading the dataset.
+2. Cleaning the data.
+3. Separating features and target variables.
+4. Encoding the diagnosis labels.
+5. Train/test splitting.
+6. Feature scaling.
+7. Checking data quality.
+8. Preparing the dataset for machine learning.
 
-The workflow was designed to avoid **data leakage**, with preprocessing and model-selection steps handled within the appropriate training workflow.
-
----
-
-## Machine Learning Models
-
-Four major machine-learning approaches were evaluated:
-
-### Logistic Regression
-
-Used as a strong and interpretable baseline classification model.
-
-### Support Vector Machine
-
-Used to evaluate a margin-based nonlinear/classification approach.
-
-### Random Forest
-
-Used as a tree-based ensemble model capable of capturing nonlinear relationships and providing feature-importance information.
-
-### Artificial Neural Network
-
-A neural-network approach was included to compare classical statistical/ML methods with a simple deep-learning architecture.
+The workflow was designed to avoid data leakage by fitting preprocessing steps only on the training data.
 
 ---
 
-## Model Comparison
+# 3. Feature Analysis
 
-Leakage-aware evaluation produced the following test-set ROC-AUC results:
+Feature analysis was performed to identify variables that contributed strongly to classification performance.
+
+Important features included:
+
+* Worst concave points
+* Mean concave points
+* Worst area
+
+Feature ranking was generated and stored in:
+
+`data/feature_ranking.csv`
+
+Dimensionality-reduction analysis was also performed using PCA.
+
+---
+
+# 4. Model Development
+
+The following models were trained and compared:
 
 | Model               | Test ROC-AUC |
 | ------------------- | -----------: |
@@ -203,15 +114,13 @@ Leakage-aware evaluation produced the following test-set ROC-AUC results:
 | Random Forest       |   **0.9937** |
 | ANN                 |   **0.9937** |
 
-The results show that all four models performed strongly on this dataset, with Logistic Regression providing the highest test ROC-AUC among the evaluated models.
+ROC-AUC was used in addition to accuracy to provide a more informative assessment of classification performance.
 
 ---
 
-## Hyperparameter Optimization
+# 5. Hyperparameter Optimization
 
-Grid-search-based optimization with cross-validation was performed to identify suitable model configurations.
-
-Best cross-validation ROC-AUC results:
+Grid-search-based hyperparameter optimization was performed for the machine learning models.
 
 | Model               | Best CV ROC-AUC |
 | ------------------- | --------------: |
@@ -220,99 +129,115 @@ Best cross-validation ROC-AUC results:
 | Random Forest       |      **0.9896** |
 | ANN                 |      **0.9897** |
 
-This comparison demonstrates the importance of evaluating model performance using cross-validation rather than relying only on a single test-set metric.
+The optimized Logistic Regression model achieved the strongest cross-validation performance.
 
 ---
 
-## Final Logistic Regression Model
+# 6. Final Logistic Regression Model
 
-The final Logistic Regression model achieved:
+The final Logistic Regression model achieved the following test-set performance:
 
 | Metric    |     Result |
 | --------- | ---------: |
 | Accuracy  | **98.25%** |
 | Precision | **98.61%** |
 | Recall    | **98.61%** |
-| F1-score  | **98.61%** |
+| F1 Score  | **98.61%** |
 | ROC-AUC   | **0.9957** |
 
 ### Confusion Matrix
 
 ```text
-                 Predicted
-                 Negative  Positive
-
-Actual Negative     41        1
-Actual Positive      1       71
+[[41, 1],
+ [ 1, 71]]
 ```
 
-The model therefore produced only two classification errors on the held-out test set.
+This indicates:
+
+* 41 correctly classified negative cases
+* 71 correctly classified positive cases
+* 1 false positive
+* 1 false negative
+
+The confusion matrix and ROC curve are available in the `images/` directory.
 
 ---
 
-## Feature Analysis
+# 7. Biological Sequence Analysis
 
-Feature ranking identified several morphological measurements among the most informative variables.
+The second component extends the project from tabular biological data into **DNA sequence modeling**.
 
-Examples include:
+An LSTM/RNN-based model was developed to classify biological DNA sequences.
 
-* **Worst concave points**
-* **Mean concave points**
-* **Worst area**
-* Other radius, perimeter, area, and concavity-related measurements
+### Sequence characteristics
 
-These findings demonstrate how model-based feature analysis can help identify variables that contribute strongly to classification performance.
+* DNA sequences were represented using the nucleotide alphabet:
 
-Feature ranking results are available in:
+  * A
+  * T
+  * G
+  * C
+* The model processes sequence information rather than manually engineered tabular features.
+* The task focuses on recognizing a **promoter-like/TATA-box-like motif** within 40 bp DNA sequences.
+
+The LSTM model achieved approximately **91.25% test accuracy** on the sequence-classification task.
+
+This component demonstrates how deep learning can be applied to biological sequence data.
+
+---
+
+# 8. R Analysis
+
+R was used for additional visualization and statistical analysis.
+
+The R script is located at:
 
 ```text
-data/feature_ranking.csv
+R/visualization.R
 ```
 
----
-
-## Biological Sequence Analysis
-
-The second component extends the project from tabular biological measurements to raw biological sequence data.
-
-An LSTM/RNN-based model was developed to learn sequence patterns from DNA sequences.
-
-The sequence-learning component achieved approximately **91.25% test accuracy** on the project sequence-classification task.
-
-The purpose of this component is not clinical prediction. Instead, it demonstrates the application of deep learning to biological sequence-pattern recognition.
-
-This provides a bridge toward applications such as:
-
-* Promoter analysis
-* Regulatory sequence analysis
-* Motif detection
-* Genomic sequence classification
-* Computational genomics
-* Sequence-based biomarker research
+This provides an example of integrating Python-based machine learning workflows with R-based analysis.
 
 ---
 
-## R Analysis
-
-An R-based visualization workflow is included to complement the Python analysis.
-
-The R script demonstrates the use of the R ecosystem for exploratory analysis and visualization.
+# 9. Project Workflow
 
 ```text
-R/
-└── visualization.R
+Biological Dataset
+        │
+        ▼
+Data Preprocessing
+        │
+        ▼
+Feature Analysis
+        │
+        ├───────────────┐
+        ▼               ▼
+Cancer Classification  DNA Sequence Analysis
+        │               │
+        ▼               ▼
+ML Models              LSTM/RNN
+        │               │
+        ▼               ▼
+Hyperparameter         Sequence
+Optimization           Classification
+        │
+        ▼
+Model Evaluation
+        │
+        ▼
+Biological Interpretation
 ```
 
 ---
 
-## Repository Structure
-
-The current GitHub repository is organized according to the files actually uploaded:
+# 10. Repository Structure
 
 ```text
 ai-ml-bioinformatics-cancer/
 │
 ├── README.md
+├── LICENSE
 ├── requirements.txt
 │
 ├── 01_data_preprocessing.py
@@ -348,139 +273,146 @@ ai-ml-bioinformatics-cancer/
 
 ---
 
-## Technologies Used
+# 11. Technologies Used
 
 ### Programming
 
 * Python
 * R
 
-### Python Libraries
-
-* NumPy
-* Pandas
-* Scikit-learn
-* TensorFlow / Keras
-* Matplotlib
-* Seaborn
-
 ### Machine Learning
 
+* Scikit-learn
+* TensorFlow / Keras
 * Logistic Regression
 * Support Vector Machine
 * Random Forest
 * Artificial Neural Network
 * LSTM / RNN
 
-### Analysis
+### Data Analysis
 
-* Feature selection
+* Pandas
+* NumPy
+* Matplotlib
 * PCA
-* Cross-validation
-* Grid search
-* ROC-AUC
-* Confusion matrices
-* Precision, Recall and F1-score
+* Statistical evaluation
+
+### Bioinformatics
+
+* DNA sequence processing
+* Biological sequence classification
+* Promoter/motif analysis
+* Computational biology workflows
 
 ---
 
-## Reproducibility
+# 12. Reproducibility
 
-The repository contains the main analysis scripts, notebook, processed dataset, model artifacts, visualization script, and dependency file required to understand and reproduce the workflow.
+The repository contains:
 
-The recommended execution order is:
+* Python analysis scripts
+* Jupyter Notebook
+* Processed dataset
+* Feature-ranking results
+* Trained machine-learning models
+* LSTM model
+* Evaluation results
+* R visualization script
+* Project dependencies
 
-```text
-01_data_preprocessing.py
-        ↓
-02_feature_selection.py
-        ↓
-03_pca_analysis.py
-        ↓
-04_train_models.py
-        ↓
-05_evaluate.py
-        ↓
-06_dna_sequence_rnn.py
+Install the required Python packages using:
+
+```bash
+pip install -r requirements.txt
 ```
 
-The complete workflow can also be reviewed through:
+The individual Python scripts can then be executed according to the workflow.
+
+---
+
+# 13. R&D Relevance
+
+This project demonstrates an end-to-end computational R&D workflow:
 
 ```text
-AI_ML_Bioinformatics_Cancer_Sequence_Classification.ipynb
+Biological Data
+      ↓
+Data QC & Preprocessing
+      ↓
+Feature Analysis
+      ↓
+Model Development
+      ↓
+Model Optimization
+      ↓
+Rigorous Evaluation
+      ↓
+Biological Interpretation
 ```
 
----
+The project is particularly relevant to areas such as:
 
-## R&D Relevance
-
-This project was designed as a **computational R&D portfolio project** rather than simply a machine-learning exercise.
-
-It demonstrates the ability to:
-
-* Translate biological data into computationally analyzable formats
-* Perform structured data preprocessing and quality checks
-* Compare different modeling approaches
-* Apply statistical and machine-learning evaluation methods
-* Investigate important biological features
-* Work with both tabular biological data and DNA sequences
-* Use classical ML alongside deep learning
-* Interpret model results rather than relying only on accuracy
-* Build a reproducible analytical workflow
-
-These skills are relevant to computational biology, bioinformatics, biomarker research, translational research, scientific data analysis, and AI/ML applications in life sciences.
+* Bioinformatics
+* Computational Biology
+* AI/ML in Life Sciences
+* Biomarker research
+* Biological data analysis
+* Genomic sequence analysis
+* Scientific data science
+* Translational research
 
 ---
 
-## Final Conclusion
+# 14. Final Conclusion
 
-This project demonstrates an end-to-end application of **AI/ML to biological data**, combining two different data modalities: structured cancer-related morphological measurements and biological DNA sequences.
+This project demonstrates the application of **AI/ML methods across two different types of biological data**: structured cancer-related measurements and raw DNA sequences.
 
-For the cancer-classification component, multiple machine-learning models were systematically compared using leakage-aware preprocessing, cross-validation, hyperparameter optimization, and independent test-set evaluation. Logistic Regression produced the strongest overall performance, achieving a **0.9957 ROC-AUC and 98.25% accuracy** on the held-out test set.
+The cancer-classification component established a complete machine-learning workflow involving preprocessing, feature analysis, model comparison, hyperparameter optimization, and rigorous evaluation. Among the evaluated models, Logistic Regression achieved the strongest overall performance, with a test ROC-AUC of **0.9957** and an accuracy of **98.25%**.
 
-The feature-analysis component further showed that morphological measurements related to **concavity, concave points, area, and radius** contributed strongly to classification.
+The biological sequence component demonstrated how an **LSTM/RNN architecture** can be applied directly to DNA sequences to identify promoter-like sequence patterns, achieving approximately **91.25% test accuracy**.
 
-The DNA sequence component extended the project into deep learning, demonstrating how an LSTM/RNN can learn patterns directly from biological sequences.
-
-### Overall R&D takeaway
-
-The key outcome of this project is not simply the high classification score. The project demonstrates a complete analytical thought process:
+Overall, the project demonstrates the complete progression:
 
 **biological data → preprocessing → feature analysis → model development → optimization → rigorous evaluation → biological interpretation**
 
-This provides a foundation for future work using real-world genomic and molecular datasets, including gene-expression data, public cancer cohorts, regulatory DNA sequences, and larger multi-omics datasets.
+It provides a foundation that can be extended to larger and more complex biological datasets and demonstrates practical skills relevant to **bioinformatics, computational biology, AI/ML, and scientific R&D**.
 
-> **Scope limitation:** The models were developed for research and portfolio purposes using public datasets. The results should not be interpreted as evidence of clinical diagnostic performance or readiness for clinical deployment.
-
----
-
-## Future Work
-
-Potential extensions include:
-
-* Applying the workflow to real gene-expression datasets from TCGA/GEO
-* Multi-class cancer subtype classification
-* Integrating genomic and clinical features
-* SHAP-based model explainability
-* Transformer-based genomic sequence models
-* Larger sequence datasets
-* External validation on independent datasets
-* Model deployment through an API or research application
+> The results presented in this repository are for research and educational purposes and should not be interpreted as clinical diagnostic performance.
 
 ---
 
-## License
+# 15. Future Work
 
-This repository is intended for educational and research purposes.
+Potential future extensions include:
 
-Please respect the licensing and attribution requirements of the original public datasets and third-party resources used in this project.
+* Applying the workflow to real gene-expression datasets such as TCGA or GEO.
+* Multi-class cancer subtype classification.
+* Explainable AI using SHAP or LIME.
+* Larger biological sequence datasets.
+* Transformer-based genomic models such as DNABERT.
+* External validation using independent datasets.
+* Integration of additional omics data.
+* Development of an interactive research application or API.
+* Benchmarking classical ML models against deep-learning approaches.
 
 ---
 
-## Author
+# License
+
+This project is licensed under the **MIT License**.
+
+See the `LICENSE` file for details.
+
+The MIT License applies to the original code in this repository. Dataset ownership and third-party software/library licenses remain subject to their respective terms.
+
+---
+
+# Author
 
 **Sadiya Tabassum**
 
 Biotechnology | Bioinformatics | AI/ML | Scientific & Clinical Data Analytics
 
-GitHub: `sadiyatabassum-st`
+* GitHub: `sadiyatabassum-st`
+* LinkedIn: https://www.linkedin.com/in/sadiyatabassum8015/
